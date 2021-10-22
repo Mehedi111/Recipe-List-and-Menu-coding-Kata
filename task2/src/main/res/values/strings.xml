@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Hellofresh test</string>
 
+
+    <string name="text_ok">Okay</string>
+
+
     <!-- Error Strings -->
     <string name="error_timeout">Server Timeout!</string>
     <string name="error_unable_to_reach">Unable to reach server!</string>
