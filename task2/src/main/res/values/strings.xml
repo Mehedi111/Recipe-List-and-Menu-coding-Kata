@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Hellofresh test</string>
+
+    <!-- Error Strings -->
+    <string name="error_timeout">Server Timeout!</string>
+    <string name="error_unable_to_reach">Unable to reach server!</string>
+    <string name="error_no_internet_connection">No internet connection!</string>
+    <string name="error_data_conversion">Failed to parse data!</string>
+    <string name="error_unknown">An unknown error occurred!</string>
 </resources>
