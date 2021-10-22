@@ -24,6 +24,9 @@ object Version {
     const val constraintLayoutVersion = "2.1.1"
     const val materialVersion = "1.4.0"
     const val timberVersion = "4.7.1"
+    const val viewModelKtxVersion = "2.2.0"
+    const val activityKTXVersion = "1.1.0"
+
 
     //dagger hilt
     const val daggerPluginVersion = "2.38.1"
@@ -60,9 +63,11 @@ object PresentationDependencies {
     const val coreKtx = "androidx.core:core-ktx:${Version.androidxCoreKtxVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Version.appcompatVersion}"
     const val material = "com.google.android.material:material:${Version.materialVersion}"
+    const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.viewModelKtxVersion}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Version.constraintLayoutVersion}"
     const val timber = "com.jakewharton.timber:timber:${Version.timberVersion}"
+    const val activityKTX= "androidx.activity:activity-ktx:${Version.activityKTXVersion}"
 
     const val daggerAndroid = "com.google.dagger:hilt-android:${Version.daggerPluginVersion}"
     const val daggerKapt = "com.google.dagger:hilt-compiler:${Version.daggerCompilerVersion}"

@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner Android.testInstrumentationRunner
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -41,6 +45,8 @@ dependencies {
     implementation PresentationDependencies.kotlin
     implementation PresentationDependencies.coreKtx
     implementation PresentationDependencies.appCompat
+    implementation PresentationDependencies.viewModelKtx
+    implementation PresentationDependencies.activityKTX
     implementation PresentationDependencies.material
     implementation PresentationDependencies.constraintLayout
     implementation PresentationDependencies.timber
