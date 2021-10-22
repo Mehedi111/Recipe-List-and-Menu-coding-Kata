@@ -6,6 +6,7 @@ import com.hellofresh.task2.databinding.ActivityRecipesListBinding
 import com.hellofresh.task2.model.RecipePresentation
 import com.hellofresh.task2.state.ViewState
 import com.hellofresh.task2.ui.BaseActivity
+import com.hellofresh.task2.ui.adapter.RecipeAdapter
 import com.hellofresh.task2.utils.extension.hide
 import com.hellofresh.task2.utils.extension.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,12 +78,18 @@ internal class RecipesListActivity : BaseActivity() {
         }
     }
 
-    private fun showRecipesListRV(data: List<RecipePresentation>) {
+    private fun showRecipesListRV(recipesList: List<RecipePresentation>) {
         binding.apply {
             progressBar.hide()
-            if (!data.isNullOrEmpty()) {
+            if (!recipesList.isNullOrEmpty()) {
                 emptyText.hide()
                 recipesRv.show()
+
+                //set data to adapter
+                recipesRv.adapter = RecipeAdapter().apply {
+                    submitList(recipesList)
+                }
+
             } else {
                 emptyText.show()
                 recipesRv.hide()
