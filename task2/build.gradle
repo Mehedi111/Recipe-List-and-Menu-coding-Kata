@@ -50,6 +50,7 @@ dependencies {
     implementation PresentationDependencies.material
     implementation PresentationDependencies.constraintLayout
     implementation PresentationDependencies.timber
+    implementation PresentationDependencies.glide
     implementation PresentationDependencies.daggerAndroid
     kapt PresentationDependencies.daggerKapt
 

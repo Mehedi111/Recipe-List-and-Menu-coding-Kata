@@ -26,6 +26,7 @@ object Version {
     const val timberVersion = "4.7.1"
     const val viewModelKtxVersion = "2.2.0"
     const val activityKTXVersion = "1.1.0"
+    const val glideVersion = "4.12.0"
 
 
     //dagger hilt
@@ -68,6 +69,7 @@ object PresentationDependencies {
         "androidx.constraintlayout:constraintlayout:${Version.constraintLayoutVersion}"
     const val timber = "com.jakewharton.timber:timber:${Version.timberVersion}"
     const val activityKTX= "androidx.activity:activity-ktx:${Version.activityKTXVersion}"
+    const val glide= "com.github.bumptech.glide:glide:${Version.glideVersion}"
 
     const val daggerAndroid = "com.google.dagger:hilt-android:${Version.daggerPluginVersion}"
     const val daggerKapt = "com.google.dagger:hilt-compiler:${Version.daggerCompilerVersion}"
