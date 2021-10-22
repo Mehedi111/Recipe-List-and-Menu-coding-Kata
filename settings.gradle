@@ -1,3 +1,5 @@
 include ':task1'
 include ':task2'
 rootProject.name = "Hellofresh test"
+include ':task2:domain'
+include ':task2:data'

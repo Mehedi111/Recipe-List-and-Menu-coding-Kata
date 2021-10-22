@@ -33,6 +33,11 @@ android {
 }
 
 dependencies {
+
+    //Local Libs
+    implementation project(':task2:domain')
+    implementation project(':task2:data')
+
     implementation PresentationDependencies.kotlin
     implementation PresentationDependencies.coreKtx
     implementation PresentationDependencies.appCompat
