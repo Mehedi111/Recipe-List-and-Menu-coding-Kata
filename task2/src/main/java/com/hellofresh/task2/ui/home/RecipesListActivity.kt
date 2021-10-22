@@ -1,4 +1,4 @@
-package com.hellofresh.task2.ui
+package com.hellofresh.task2.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
