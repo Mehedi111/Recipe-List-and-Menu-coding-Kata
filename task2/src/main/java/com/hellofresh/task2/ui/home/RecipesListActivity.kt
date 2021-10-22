@@ -3,8 +3,11 @@ package com.hellofresh.task2.ui.home
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.hellofresh.task2.databinding.ActivityRecipesListBinding
+import com.hellofresh.task2.model.RecipePresentation
 import com.hellofresh.task2.state.ViewState
 import com.hellofresh.task2.ui.BaseActivity
+import com.hellofresh.task2.utils.extension.hide
+import com.hellofresh.task2.utils.extension.show
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -32,7 +35,7 @@ internal class RecipesListActivity : BaseActivity() {
     private fun observeNetworkChanges() {
         onNetworkChange { isConnected ->
             viewModel.recipesListviewState.value?.let { viewState ->
-                if (isConnected && viewState is ViewState.Error){
+                if (isConnected && viewState is ViewState.Error) {
                     requestRecipes()
                 }
             }
@@ -48,16 +51,50 @@ internal class RecipesListActivity : BaseActivity() {
             when (state) {
                 is ViewState.Loading -> {
                     Timber.tag(TAG).d("Loading...")
+                    showLoadingView()
                 }
 
                 is ViewState.Success -> {
                     Timber.tag(TAG).d("Success...${state.data.size}")
+                    showRecipesListRV(state.data)
                 }
 
                 is ViewState.Error -> {
                     Timber.tag(TAG).d("Error...${getString(state.message)}")
+                    showErrorMsg(getString(state.message))
                 }
             }
         })
+    }
+
+    private fun showErrorMsg(message: String) {
+        binding.apply {
+            progressBar.hide()
+            emptyText.show()
+            recipesRv.hide()
+
+            showSnackBar(root, message)
+        }
+    }
+
+    private fun showRecipesListRV(data: List<RecipePresentation>) {
+        binding.apply {
+            progressBar.hide()
+            if (!data.isNullOrEmpty()) {
+                emptyText.hide()
+                recipesRv.show()
+            } else {
+                emptyText.show()
+                recipesRv.hide()
+            }
+        }
+    }
+
+    private fun showLoadingView() {
+        binding.apply {
+            progressBar.show()
+            emptyText.hide()
+            recipesRv.hide()
+        }
     }
 }

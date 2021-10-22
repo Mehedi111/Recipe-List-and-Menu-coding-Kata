@@ -4,6 +4,7 @@
 
     <string name="text_ok">Okay</string>
 
+    <string name="text_no_data_found">Something went wrong! No data found</string>
 
     <!-- Error Strings -->
     <string name="error_timeout">Server Timeout!</string>
