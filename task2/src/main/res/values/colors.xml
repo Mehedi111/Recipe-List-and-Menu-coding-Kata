@@ -6,4 +6,5 @@
 
 
     <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#E4333232</color>
 </resources>
