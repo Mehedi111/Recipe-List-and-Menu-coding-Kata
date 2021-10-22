@@ -1,19 +1,19 @@
 package com.hellofresh.task2.ui.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.hellofresh.task2.databinding.ActivityRecipesListBinding
 import com.hellofresh.task2.state.ViewState
+import com.hellofresh.task2.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 
 @AndroidEntryPoint
-class RecipesListActivity : AppCompatActivity() {
+internal class RecipesListActivity : BaseActivity() {
 
     companion object {
-        private const val TAG = "RecipesListActivity_LOG"
+        private val TAG = RecipesListActivity::class.java.simpleName
     }
 
     private lateinit var binding: ActivityRecipesListBinding
@@ -26,6 +26,17 @@ class RecipesListActivity : AppCompatActivity() {
 
         observeViewState()
         requestRecipes()
+        observeNetworkChanges()
+    }
+
+    private fun observeNetworkChanges() {
+        onNetworkChange { isConnected ->
+            viewModel.recipesListviewState.value?.let { viewState ->
+                if (isConnected && viewState is ViewState.Error){
+                    requestRecipes()
+                }
+            }
+        }
     }
 
     private fun requestRecipes() {
