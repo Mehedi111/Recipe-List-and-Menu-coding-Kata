@@ -8,7 +8,10 @@
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:contentPadding="@dimen/padding_8">
+    app:contentPaddingBottom="@dimen/padding_8"
+    app:contentPaddingLeft="@dimen/padding_8"
+    app:contentPaddingRight="@dimen/padding_8"
+    app:contentPaddingTop="@dimen/padding_16">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +46,7 @@
             android:id="@+id/recipe_headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/secondaryTextColor"
             android:textSize="@dimen/recipe_headline_font_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
