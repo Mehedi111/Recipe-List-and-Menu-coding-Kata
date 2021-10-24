@@ -1,6 +1,7 @@
 package com.hellofresh.task1.service
 
 import com.hellofresh.task1.Data
+import com.hellofresh.task1.Message
 import com.hellofresh.task1.getMenu
 import com.hellofresh.task1.model.Menu
 import com.hellofresh.task1.model.Result
@@ -42,6 +43,40 @@ class RecipeSelectionServiceTest: StringSpec() {
             result.apply {
                 this.shouldBeInstanceOf<Result.Success>()
                 this.selectionList.size shouldBe 2
+            }
+        }
+
+        "check that selectRecipes returns error message if add more than 3 recipes" {
+            //Given we add multiple recipes to the selection list
+            val result = selectionService.selectRecipes(
+                Data.recipeOne.id,
+                Data.recipeTwo.id,
+                Data.recipeThree.id,
+                Data.recipeFour.id
+            )
+
+            //then
+            result.apply {
+                this.shouldBeInstanceOf<Result.Error>()
+                this.msg shouldBe Message.MAX_LIMIT_REACHED
+            }
+        }
+
+        "check that selectRecipes returns error message if has family subscription and add more than 5 recipes"{
+            //Given
+            //we make subscription is for family
+            menu.subscriptionInfo = Data.subscriptionTypeTwo
+
+            // we add multiple recipes to the selection list
+            val result = selectionService.selectRecipes(
+                Data.recipeOne.id, Data.recipeTwo.id,
+                Data.recipeThree.id, Data.recipeFour.id, Data.recipeFive.id, Data.recipeSix.id
+            )
+
+            //then
+            result.apply {
+                this.shouldBeInstanceOf<Result.Error>()
+                this.msg shouldBe Message.FAMILY_SUBS_MAX_LIMIT_REACHED
             }
         }
     }

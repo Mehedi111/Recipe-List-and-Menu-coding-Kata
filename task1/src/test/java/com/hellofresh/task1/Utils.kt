@@ -1,10 +1,12 @@
 package com.hellofresh.task1
 
+import com.hellofresh.task1.Data.subscriptionTypeOne
 import com.hellofresh.task1.model.Menu
 import com.hellofresh.task1.model.Recipe
+import com.hellofresh.task1.model.Subscription
 
 internal fun getMenu(): Menu{
-    return Menu(Data.recipeList)
+    return Menu(Data.recipeList, subscriptionTypeOne)
 }
 
 object Data {
@@ -47,5 +49,17 @@ object Data {
     val recipeList = listOf(
         recipeOne, recipeTwo, recipeThree, recipeFour,
         recipeFive, recipeSix
+    )
+
+    val subscriptionTypeOne = Subscription(
+        id = 1,
+        delivery_day = "Saturday",
+        isForFamily = false
+    )
+
+    val subscriptionTypeTwo = Subscription(
+        id = 2,
+        delivery_day = "Sunday",
+        isForFamily = true
     )
 }
