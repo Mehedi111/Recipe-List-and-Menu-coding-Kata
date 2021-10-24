@@ -17,7 +17,7 @@ class SelectionService(
     }
 
     private fun addRecipeToSelectionIfPossible(ids: Array<out String>): Result {
-        if (ids.isEmpty()) return Result.Error(Message.RECIPE_ID_MISSING)
+        if (ids.isEmpty()) return Result.Error(Message.RECIPE_ID_NOT_FOUND)
 
         ids.iterator().forEach { id ->
             if (!menu.subscriptionInfo.isForFamily

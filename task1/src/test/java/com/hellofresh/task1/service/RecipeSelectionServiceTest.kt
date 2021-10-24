@@ -104,7 +104,7 @@ class RecipeSelectionServiceTest: StringSpec() {
 
             result.apply {
                 this.shouldBeInstanceOf<Result.Error>()
-                this.msg shouldBe Message.RECIPE_ID_MISSING
+                this.msg shouldBe Message.RECIPE_ID_NOT_FOUND
             }
         }
 
