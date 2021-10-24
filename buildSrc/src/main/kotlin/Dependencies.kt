@@ -43,6 +43,7 @@ object Version {
 
     // Testing
     const val junitVersion = "4.13.2"
+    const val kotestVersion = "4.3.1"
 
 }
 
@@ -57,6 +58,8 @@ object TaskOneDependencies {
 
 object TestDependencies {
     const val junit = "junit:junit:${Version.junitVersion}"
+    const val kotestJunit5 = "io.kotest:kotest-runner-junit5:${Version.kotestVersion}"
+    const val kotestCore = "io.kotest:kotest-assertions-core:${Version.kotestVersion}"
 }
 
 object PresentationDependencies {

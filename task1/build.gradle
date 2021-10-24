@@ -1,9 +1,14 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation TaskOneDependencies.kotlin
-    testImplementation TestDependencies.junit
+    testImplementation TestDependencies.kotestJunit5
+    testImplementation TestDependencies.kotestCore
 }
 
 sourceCompatibility = "1.8"
