@@ -17,6 +17,8 @@ class SelectionService(
     }
 
     private fun addRecipeToSelectionIfPossible(ids: Array<out String>): Result {
+        if (ids.isEmpty()) return Result.Error(Message.RECIPE_ID_MISSING)
+
         ids.iterator().forEach { id ->
             if (!menu.subscriptionInfo.isForFamily
                 && menu.selectionList.size == 3
@@ -28,18 +30,25 @@ class SelectionService(
             ) {
                 return Result.Error(Message.FAMILY_SUBS_MAX_LIMIT_REACHED)
             } else {
-                addRecipeToSelectionIfAvailable(id)
+                if (!isRecipeAdded(id)){
+                    return Result.Error(Message.RECIPE_ALREADY_SELECTED)
+                }
             }
         }
         return Result.Success(menu.selectionList)
     }
 
-    private fun addRecipeToSelectionIfAvailable(id: String) {
+    private fun isRecipeAdded(id: String): Boolean {
         menu.availableRecipes.forEach { availableRecipe ->
             if (availableRecipe.id == id) {
+                if (menu.selectionList.contains(availableRecipe)) {
+                    return false
+                }
                 menu.selectionList.add(availableRecipe)
+                return true
             }
         }
+        return false
     }
 
 }

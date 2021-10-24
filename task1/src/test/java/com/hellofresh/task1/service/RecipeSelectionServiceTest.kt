@@ -79,6 +79,36 @@ class RecipeSelectionServiceTest: StringSpec() {
                 this.msg shouldBe Message.FAMILY_SUBS_MAX_LIMIT_REACHED
             }
         }
+
+        "check that selectRecipes returns error if recipe already selected"{
+            //Given we select same recipe two times
+            val resultOne = selectionService.selectRecipes(Data.recipeTwo.id)
+            val resultTwo = selectionService.selectRecipes(Data.recipeTwo.id)
+
+            //then
+            resultOne.apply {
+                this.shouldBeInstanceOf<Result.Success>()
+                this.selectionList.size shouldBe 1
+            }
+
+            resultTwo.apply {
+                this.shouldBeInstanceOf<Result.Error>()
+                this.msg shouldBe Message.RECIPE_ALREADY_SELECTED
+            }
+        }
+
+
+        "check that selectRecipes returns error if requested recipe id is empty"{
+            //When we call selectRecipes with empty recipe id
+            val result = selectionService.selectRecipes()
+
+            result.apply {
+                this.shouldBeInstanceOf<Result.Error>()
+                this.msg shouldBe Message.RECIPE_ID_MISSING
+            }
+        }
+
+
     }
 
 }
