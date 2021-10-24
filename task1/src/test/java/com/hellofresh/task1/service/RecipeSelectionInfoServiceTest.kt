@@ -5,6 +5,7 @@ import com.hellofresh.task1.getMenu
 import com.hellofresh.task1.model.Menu
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.core.test.TestCase
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.ints.shouldBeExactly
 import io.kotest.matchers.shouldBe
 
@@ -51,8 +52,8 @@ class RecipeSelectionInfoServiceTest : StringSpec() {
             //Then
             recipes.apply {
                 this.size shouldBe 3
-                this[0].id shouldBe Data.recipeOne.id
-                this[2].title shouldBe Data.recipeThree.title
+                this shouldContain Data.recipeOne
+                this shouldContain Data.recipeThree
             }
         }
     }

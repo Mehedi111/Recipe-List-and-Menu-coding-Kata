@@ -21,12 +21,12 @@ class SelectionService(
 
         ids.iterator().forEach { id ->
             if (!menu.subscriptionInfo.isForFamily
-                && menu.selectionList.size == 3
+                && menu.selectionRecipes.size == 3
             ) {
                 return Result.Error(Message.MAX_LIMIT_REACHED)
             } else if (
                 menu.subscriptionInfo.isForFamily
-                && menu.selectionList.size == 5
+                && menu.selectionRecipes.size == 5
             ) {
                 return Result.Error(Message.FAMILY_SUBS_MAX_LIMIT_REACHED)
             } else {
@@ -35,17 +35,13 @@ class SelectionService(
                 }
             }
         }
-        return Result.Success(menu.selectionList)
+        return Result.Success(menu.selectionRecipes)
     }
 
     private fun isRecipeAdded(id: String): Boolean {
         menu.availableRecipes.forEach { availableRecipe ->
             if (availableRecipe.id == id) {
-                if (menu.selectionList.contains(availableRecipe)) {
-                    return false
-                }
-                menu.selectionList.add(availableRecipe)
-                return true
+                return menu.selectionRecipes.add(availableRecipe)
             }
         }
         return false

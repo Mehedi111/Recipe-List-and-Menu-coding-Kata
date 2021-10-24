@@ -15,11 +15,11 @@ class UnSelectionService(
         ids.iterator().forEach { id ->
             unselectRecipesFromSelection(id)
         }
-        return Result.Success(menu.selectionList)
+        return Result.Success(menu.selectionRecipes)
     }
 
     private fun unselectRecipesFromSelection(id: String) {
-        menu.selectionList.removeIf { recipe ->
+        menu.selectionRecipes.removeIf { recipe ->
             recipe.id == id
         }
     }

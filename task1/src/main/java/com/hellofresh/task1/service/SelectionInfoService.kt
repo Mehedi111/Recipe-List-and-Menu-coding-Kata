@@ -4,7 +4,7 @@ import com.hellofresh.task1.model.Menu
 import com.hellofresh.task1.model.Recipe
 
 interface ISelectionInfoService {
-    fun getAllSelectedRecipes(): List<Recipe>
+    fun getAllSelectedRecipes(): MutableSet<Recipe>
     fun getTotalNumOfSelectedRecipes(): Int
 }
 
@@ -12,9 +12,9 @@ class SelectionInfoService(
     private val menu: Menu
 ) : ISelectionInfoService {
 
-    override fun getAllSelectedRecipes(): List<Recipe> = menu.selectionList
+    override fun getAllSelectedRecipes(): MutableSet<Recipe> = menu.selectionRecipes
 
-    override fun getTotalNumOfSelectedRecipes(): Int = menu.selectionList.size
+    override fun getTotalNumOfSelectedRecipes(): Int = menu.selectionRecipes.size
 
 }
 

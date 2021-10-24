@@ -4,5 +4,5 @@ data class Menu(
     val availableRecipes: List<Recipe>,
     var subscriptionInfo: Subscription
 ){
-    val selectionList: MutableList<Recipe> = mutableListOf()
+    val selectionRecipes: MutableSet<Recipe> = mutableSetOf()
 }
