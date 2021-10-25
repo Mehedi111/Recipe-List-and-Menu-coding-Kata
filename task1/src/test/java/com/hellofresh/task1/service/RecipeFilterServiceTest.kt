@@ -1,6 +1,6 @@
 package com.hellofresh.task1.service
 
-import com.hellofresh.task1.getMenu
+import com.hellofresh.task1.getFakeMenu
 import com.hellofresh.task1.model.Menu
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.core.test.TestCase
@@ -14,7 +14,7 @@ class RecipeFilterServiceTest : StringSpec() {
 
     override fun beforeTest(testCase: TestCase) {
         super.beforeTest(testCase)
-        menu = getMenu()
+        menu = getFakeMenu()
         filterService = FilterService(menu)
     }
 

@@ -1,15 +1,15 @@
 package com.hellofresh.task1
 
-import com.hellofresh.task1.Data.subscriptionTypeOne
+import com.hellofresh.task1.FakeData.subscriptionTypeOne
 import com.hellofresh.task1.model.Menu
 import com.hellofresh.task1.model.Recipe
 import com.hellofresh.task1.model.Subscription
 
-internal fun getMenu(): Menu{
-    return Menu(Data.recipeList, subscriptionTypeOne)
+internal fun getFakeMenu(): Menu {
+    return Menu(FakeData.recipeList, subscriptionTypeOne)
 }
 
-object Data {
+object FakeData {
     val recipeOne = Recipe(
         id = "1",
         title = "title1",

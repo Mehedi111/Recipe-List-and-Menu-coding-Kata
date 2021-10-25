@@ -1,8 +1,8 @@
 package com.hellofresh.task1.service
 
-import com.hellofresh.task1.Data
+import com.hellofresh.task1.FakeData
 import com.hellofresh.task1.Message
-import com.hellofresh.task1.getMenu
+import com.hellofresh.task1.getFakeMenu
 import com.hellofresh.task1.model.Menu
 import com.hellofresh.task1.model.Result
 import io.kotest.core.spec.style.StringSpec
@@ -21,14 +21,14 @@ class RecipeSelectionServiceTest: StringSpec() {
 
     override fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)
-        menu = getMenu()
+        menu = getFakeMenu()
         selectionService = SelectionService(menu)
     }
 
     init {
         "check that selectRecipes adds a single recipe to the selection list"{
             //Given we select a recipe
-            val result = selectionService.selectRecipes(Data.recipeOne.id)
+            val result = selectionService.selectRecipes(FakeData.recipeOne.id)
 
             result.apply {
                 this.shouldBeInstanceOf<Result.Success>()
@@ -38,7 +38,7 @@ class RecipeSelectionServiceTest: StringSpec() {
 
         "check that selectRecipes adds multiple recipes to the selection list"{
             //Given we select multiple recipes
-            val result = selectionService.selectRecipes(Data.recipeTwo.id, Data.recipeThree.id)
+            val result = selectionService.selectRecipes(FakeData.recipeTwo.id, FakeData.recipeThree.id)
 
             result.apply {
                 this.shouldBeInstanceOf<Result.Success>()
@@ -49,10 +49,10 @@ class RecipeSelectionServiceTest: StringSpec() {
         "check that selectRecipes returns error message if add more than 3 recipes" {
             //Given we add multiple recipes to the selection list
             val result = selectionService.selectRecipes(
-                Data.recipeOne.id,
-                Data.recipeTwo.id,
-                Data.recipeThree.id,
-                Data.recipeFour.id
+                FakeData.recipeOne.id,
+                FakeData.recipeTwo.id,
+                FakeData.recipeThree.id,
+                FakeData.recipeFour.id
             )
 
             //then
@@ -65,12 +65,12 @@ class RecipeSelectionServiceTest: StringSpec() {
         "check that selectRecipes returns error message if has family subscription and add more than 5 recipes"{
             //Given
             //we make subscription is for family
-            menu.subscriptionInfo = Data.subscriptionTypeTwo
+            menu.subscriptionInfo = FakeData.subscriptionTypeTwo
 
             // we add multiple recipes to the selection list
             val result = selectionService.selectRecipes(
-                Data.recipeOne.id, Data.recipeTwo.id,
-                Data.recipeThree.id, Data.recipeFour.id, Data.recipeFive.id, Data.recipeSix.id
+                FakeData.recipeOne.id, FakeData.recipeTwo.id,
+                FakeData.recipeThree.id, FakeData.recipeFour.id, FakeData.recipeFive.id, FakeData.recipeSix.id
             )
 
             //then
@@ -82,8 +82,8 @@ class RecipeSelectionServiceTest: StringSpec() {
 
         "check that selectRecipes returns error if recipe already selected"{
             //Given we select same recipe two times
-            val resultOne = selectionService.selectRecipes(Data.recipeTwo.id)
-            val resultTwo = selectionService.selectRecipes(Data.recipeTwo.id)
+            val resultOne = selectionService.selectRecipes(FakeData.recipeTwo.id)
+            val resultTwo = selectionService.selectRecipes(FakeData.recipeTwo.id)
 
             //then
             resultOne.apply {

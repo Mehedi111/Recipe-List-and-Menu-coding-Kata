@@ -10,7 +10,7 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 
 class AppIntegrationTest : AnnotationSpec() {
 
-    private val menu: Menu = getMenu()
+    private val menu: Menu = getFakeMenu()
 
     private fun testEnv(): Env = object : Env,
         ISelectionService by SelectionService(menu),
@@ -24,21 +24,21 @@ class AppIntegrationTest : AnnotationSpec() {
         val app = testEnv()
 
         val selectionResult =
-            app.selectRecipes(Data.recipeOne.id, Data.recipeTwo.id, Data.recipeFour.id)
+            app.selectRecipes(FakeData.recipeOne.id, FakeData.recipeTwo.id, FakeData.recipeFour.id)
         selectionResult.shouldBeInstanceOf<Result.Success>()
 
         val overLimitSelectionResult =
-            app.selectRecipes(Data.recipeFive.id)
+            app.selectRecipes(FakeData.recipeFive.id)
         overLimitSelectionResult.shouldBeInstanceOf<Result.Error>()
 
-        val unSelectionResult = app.unSelectRecipes(Data.recipeFour.id)
+        val unSelectionResult = app.unSelectRecipes(FakeData.recipeFour.id)
         unSelectionResult.shouldBeInstanceOf<Result.Success>()
 
         val numberOfSelection = app.getTotalNumOfSelectedRecipes()
         numberOfSelection shouldBeExactly 2
 
         val allSelectedRecipes = app.getAllSelectedRecipes()
-        allSelectedRecipes shouldContain Data.recipeOne
+        allSelectedRecipes shouldContain FakeData.recipeOne
 
         val recipesByTag = app.filterRecipeByTag("hot")
         recipesByTag.size shouldBeExactly 3

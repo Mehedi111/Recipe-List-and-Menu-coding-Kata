@@ -1,7 +1,7 @@
 package com.hellofresh.task1.service
 
-import com.hellofresh.task1.Data
-import com.hellofresh.task1.getMenu
+import com.hellofresh.task1.FakeData
+import com.hellofresh.task1.getFakeMenu
 import com.hellofresh.task1.model.Menu
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.core.test.TestCase
@@ -17,7 +17,7 @@ class RecipeSelectionInfoServiceTest : StringSpec() {
 
     override fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)
-        menu = getMenu()
+        menu = getFakeMenu()
         selectionService = SelectionService(menu)
         selectionInfoService = SelectionInfoService(menu)
     }
@@ -26,9 +26,9 @@ class RecipeSelectionInfoServiceTest : StringSpec() {
         "check that showNumOfRecipeSelected returns total number of selected recipes"{
             //Given we add multiple recipes to the selection list
             selectionService.selectRecipes(
-                Data.recipeTwo.id,
-                Data.recipeThree.id,
-                Data.recipeFive.id
+                FakeData.recipeTwo.id,
+                FakeData.recipeThree.id,
+                FakeData.recipeFive.id
             )
 
             //when we get number of selected recipe
@@ -41,9 +41,9 @@ class RecipeSelectionInfoServiceTest : StringSpec() {
         "check that getAllSelectedRecipes returns all selected recipes"{
             //Given we add multiple recipes to the selection list
             selectionService.selectRecipes(
-                Data.recipeOne.id,
-                Data.recipeTwo.id,
-                Data.recipeThree.id
+                FakeData.recipeOne.id,
+                FakeData.recipeTwo.id,
+                FakeData.recipeThree.id
             )
 
             //When we get all selected recipes
@@ -52,8 +52,8 @@ class RecipeSelectionInfoServiceTest : StringSpec() {
             //Then
             recipes.apply {
                 this.size shouldBe 3
-                this shouldContain Data.recipeOne
-                this shouldContain Data.recipeThree
+                this shouldContain FakeData.recipeOne
+                this shouldContain FakeData.recipeThree
             }
         }
     }
