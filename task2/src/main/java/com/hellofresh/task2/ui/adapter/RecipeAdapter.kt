@@ -12,6 +12,9 @@ import com.hellofresh.task2.utils.DateUtils
 import com.hellofresh.task2.utils.extension.loadImage
 import javax.inject.Inject
 
+/**
+ * use sealed class to dynamic view
+ */
 class RecipeAdapter @Inject constructor() :
     ListAdapter<RecipePresentation, RecyclerView.ViewHolder>(diffCallback) {
 
